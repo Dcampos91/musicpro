@@ -3,7 +3,7 @@ from .models import *
 from .forms import ContactoForm
 from rest_framework import viewsets
 from .serializers import GuitarraSerializer
-
+#ayuda
 #clases de serializer
 class GuitarraViewset(viewsets.ModelViewSet):
     queryset = Guitarra.objects.all()
