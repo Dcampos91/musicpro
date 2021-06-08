@@ -1,0 +1,104 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block contenido %}
+{% load humanize %}
+<h2>Productos</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="producto">
+            <h2>Guitarras</h2>
+            {% for g in guitarra %}
+            <div class="contenedor_producto">
+                {% if g.imagen %}
+                <img src="{{ g.imagen.url }}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    <h5>{{ g.marca | capfirst }}</h5>
+                    <h2>{{ g.tipo_cuerpo | title }}</h2>
+                    <h3>${{ g.valor | intcomma }}</h3>
+                </div>
+    
+            </div>
+            {% endfor %}
+    
+            <h2>Bajos</h2>
+            {% for b in bajo %}
+            <div class="contenedor_producto">
+                {% if b.imagen %}
+                <img src="{{ b.imagen.url }}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    <h5>{{ b.marca | capfirst }}</h5>
+                    <h2>{{ b.tipo_cuerpo | title }}</h2>
+                    <h3>${{ b.valor | intcomma }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+    
+            <h2>Piano</h2>
+            {% for p in piano %}
+            <div class="contenedor_producto">
+                {% if p.imagen %}
+                <img src="{{ p.imagen.url }}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    <h5>{{ p.marca | capfirst }}</h5>
+                    <h2>{{ p.tipo_cuerpo | title }}</h2>
+                    <h3>${{ p.valor | intcomma }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+    
+            <h2>Percusion</h2>
+            {% for p in percusion %}
+            <div class="contenedor_producto">
+                {% if p.imagen %}
+                <img src="{{ p.imagen.url }}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    <h5>{{ p.marca | capfirst }}</h5>
+                    <h2>{{ p.tipo_cuerpo | title }}</h2>
+                    <h3>${{ p.valor | intcomma }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+    
+            <h2>Amplificador</h2>
+            {% for a in amplificador %}
+            <div class="contenedor_producto">
+                {% if a.imagen %}
+                <img src="{{ a.imagen.url }}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    <h5>{{ a.marca | capfirst }}</h5>
+                    <h2>{{ a.tipo_amplificador | title }}</h2>
+                    <h3>${{ a.valor | intcomma }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+    
+            <h2>Accesorios</h2>
+            {% for a in accesorios %}
+            <div class="contenedor_producto">
+                {% if a.imagen %}
+                <img src="{{ a.imagen.url }}" alt="imagen producto">
+                {% endif %}
+                <div class="detalle">
+                    <h5>{{ a.marca | capfirst }}</h5>
+                    <h2>{{ a.tipo_cuerpo | title }}</h2>
+                    <h3>${{ a.valor | intcomma }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
