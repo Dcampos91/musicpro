@@ -5,100 +5,108 @@
 {% load humanize %}
 <h2>Productos</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="producto">
-            <h2>Guitarras</h2>
+<div class="productos">    
+    <div class="producto">
+        <div class="contenedor_producto">
+            <h2>Guitarra</h2>
             {% for g in guitarra %}
-            <div class="contenedor_producto">
-                {% if g.imagen %}
-                <img src="{{ g.imagen.url }}" alt="imagen producto">
-                {% endif %}
-                <div class="detalle">
-                    <h5>{{ g.marca | capfirst }}</h5>
-                    <h2>{{ g.tipo_cuerpo | title }}</h2>
-                    <h3>${{ g.valor | intcomma }}</h3>
+            <div class="card">
+                <img src="{{g.imagen}}" class="card-img-top" alt="{{g.marca}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{g.tipo_cuerpo}}</h5>
+                    <p class="card-text">{{g.valor}}</p>
                 </div>
-    
+                <button class="btn btn-primary" type="submit">Agregar al Carro</button>
             </div>
-            {% endfor %}
-    
-            <h2>Bajos</h2>
-            {% for b in bajo %}
-            <div class="contenedor_producto">
-                {% if b.imagen %}
-                <img src="{{ b.imagen.url }}" alt="imagen producto">
-                {% endif %}
-                <div class="detalle">
-                    <h5>{{ b.marca | capfirst }}</h5>
-                    <h2>{{ b.tipo_cuerpo | title }}</h2>
-                    <h3>${{ b.valor | intcomma }}</h3>
-                </div>
-            </div>
-            {% endfor %}
-    
-            <h2>Piano</h2>
-            {% for p in piano %}
-            <div class="contenedor_producto">
-                {% if p.imagen %}
-                <img src="{{ p.imagen.url }}" alt="imagen producto">
-                {% endif %}
-                <div class="detalle">
-                    <h5>{{ p.marca | capfirst }}</h5>
-                    <h2>{{ p.tipo_cuerpo | title }}</h2>
-                    <h3>${{ p.valor | intcomma }}</h3>
-                </div>
-            </div>
-            {% endfor %}
-    
-            <h2>Percusion</h2>
-            {% for p in percusion %}
-            <div class="contenedor_producto">
-                {% if p.imagen %}
-                <img src="{{ p.imagen.url }}" alt="imagen producto">
-                {% endif %}
-                <div class="detalle">
-                    <h5>{{ p.marca | capfirst }}</h5>
-                    <h2>{{ p.tipo_cuerpo | title }}</h2>
-                    <h3>${{ p.valor | intcomma }}</h3>
-                </div>
-            </div>
-            {% endfor %}
-    
-            <h2>Amplificador</h2>
-            {% for a in amplificador %}
-            <div class="contenedor_producto">
-                {% if a.imagen %}
-                <img src="{{ a.imagen.url }}" alt="imagen producto">
-                {% endif %}
-                <div class="detalle">
-                    <h5>{{ a.marca | capfirst }}</h5>
-                    <h2>{{ a.tipo_amplificador | title }}</h2>
-                    <h3>${{ a.valor | intcomma }}</h3>
-                </div>
-            </div>
-            {% endfor %}
-    
-            <h2>Accesorios</h2>
-            {% for a in accesorios %}
-            <div class="contenedor_producto">
-                {% if a.imagen %}
-                <img src="{{ a.imagen.url }}" alt="imagen producto">
-                {% endif %}
-                <div class="detalle">
-                    <h5>{{ a.marca | capfirst }}</h5>
-                    <h2>{{ a.tipo_cuerpo | title }}</h2>
-                    <h3>${{ a.valor | intcomma }}</h3>
-                </div>
-            </div>
+            <hr>
             {% endfor %}
         </div>
+    </div>  
 
-    </div>
+    <div class="producto">
+        <div class="contenedor_producto">
+            <h2>Bajo</h2>
+            {% for b in bajo %}
+            <div class="card">
+                <img src="{{b.imagen}}" class="card-img-top" alt="{{b.marca}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{b.tipo_cuerpo}}</h5>
+                    <p class="card-text">{{b.valor}}</p>
+                </div>
+                <button class="btn btn-primary" type="submit">Agregar al Carro</button>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div> 
 
+    <div class="producto">
+        <div class="contenedor_producto">
+            <h2>Piano</h2>
+            {% for p in piano %}
+            <div class="card">
+                <img src="{{p.imagen}}" class="card-img-top" alt="{{p.marca}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.tipo_piano}}</h5>
+                    <p class="card-text">{{p.valor}}</p>
+                </div>
+                <button class="btn btn-primary" type="submit">Agregar al Carro</button>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div> 
+
+    <div class="producto">
+        <div class="contenedor_producto">
+            <h2>Percusion</h2>
+            {% for p in percusion %}
+            <div class="card">
+                <img src="{{p.imagen}}" class="card-img-top" alt="{{p.marca}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.tipo_bateria}}</h5>
+                    <p class="card-text">{{p.valor}}</p>
+                </div>
+                <button class="btn btn-primary" type="submit">Agregar al Carro</button>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div> 
+
+    <div class="producto">
+        <div class="contenedor_producto">
+            <h2>Amplificador</h2>
+            {% for a in amplificador %}
+            <div class="card">
+                <img src="{{a.imagen}}" class="card-img-top" alt="{{a.marca}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{a.tipo_amplificador}}</h5>
+                    <p class="card-text">{{a.valor}}</p>
+                </div>
+                <button class="btn btn-primary" type="submit">Agregar al Carro</button>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div> 
+
+    <div class="producto">
+        <div class="contenedor_producto">
+            <h2>Accesorio</h2>
+            {% for a in accesorio %}
+            <div class="card">
+                <img src="{{a.imagen}}" class="card-img-top" alt="{{a.marca}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{a.tipo_accesorio}}</h5>
+                    <h5 class="card-title">{{a.nombre_accesorio}}</h5>
+                    <p class="card-text">{{a.valor}}</p>
+                </div>
+                <button class="btn btn-primary" type="submit">Agregar al Carro</button>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div> 
 </div>
-
-
-
-
 {% endblock %}

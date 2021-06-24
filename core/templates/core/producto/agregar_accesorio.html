@@ -1,0 +1,167 @@
+{% extends 'core/base.html' %}
+{% block contenido %}
+{% load humanize %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="card">
+    <div class="card-body">
+        <h1>Agregar Accesorio</h1>
+        <hr>
+        <br>
+        <div class="row">
+            <div class="form-inline">
+                <div class="form-group" style="margin-right: 20px;">
+                    <label for="txtId">&nbsp;&nbsp;&nbsp;&nbsp;Id: &nbsp;</label>
+                    <input type="text" class="form-control" id="txtId" style="width: 50px;">
+                </div>
+                <div class="form-group" style="margin-right: 20px;">
+                    <label for="txtmarca">Marca: &nbsp;</label>
+                    <input type="text" class="form-control" id="txtmarca">
+                </div>
+                <div class="form-group" style="margin-right: 20px;">
+                    <label for="txtmodelo">Tipo Accesorio: &nbsp;</label>
+                    <input type="text" class="form-control" id="txtmodelo">
+                </div>
+                <div class="form-group" style="margin-right: 20px;">
+                    <label for="txttipo">Nombre Accesorio: &nbsp;</label>
+                    <input type="text" class="form-control" id="txttipo">
+                </div>
+                <div class="form-group" style="margin-right: 20px;">
+                    <label for="txtvalor">Valor: &nbsp;</label>
+                    <input type="text" class="form-control" id="txtvalor">
+                </div>
+                <div class="form-group" style="margin-right: 20px;">
+                    <label for="txtdescripcion">Descripción: &nbsp;</label>
+                    <input type="text" class="form-control" id="txtdescripcion">
+                </div>
+                <br>
+                <button id="Submit" type="submit" class="btn btn-primary">Agregar Accesorio</button>
+            </div>
+        </div>
+        <br><br>
+        <br><br>
+
+        <h2>Lista de Accesorio</h2>
+        <table class="table table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Tipo Accesorio</th>
+                <th>Nombre Accesorio</th>
+                <th>Valor</th>
+                <th>Descripción</th>
+
+                <th>Acción</th>
+            </tr>
+            <tbody id="divBody"></tbody>
+
+
+        </table>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        Accesorio();
+        });
+        $('#Submit').click(function () {
+            let id = $('#txtId').val();
+            let marca = $('#txtmarca').val();
+            let tipoaccesorio = $('#txtmodelo').val();
+            let nombre = $('#txttipo').val();
+            let valor = $('#txtvalor').val();
+            let descripcion = $('#txtdescripcion').val();
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    "id": id,
+                    "marca": marca,
+                    "tipo_accesorio": tipoaccesorio,
+                    "nombre_accesorio": nombre,
+                    "valor": valor,
+                    "descripcion": descripcion
+                },
+
+                url: "http://localhost:8000/api/accesorio/",
+                error: function (xhr, status, error) {
+
+                    var err_msg = ''
+                    for (var prop in xhr.responseJSON) {
+                        err_msg += prop + ': ' + xhr.responseJSON[prop] + '\n';
+                    }
+
+                    alert(err_msg);
+                },
+                success: function (result) {
+                 
+                    Accesorio();
+                    alert('Data Saved Successfully.');
+                    $('#txtId').val("");
+                    $('#txtmarca').val("");
+                    $('#txtmodelo').val("");
+                    $('#txttipo').val("");
+                    $('#txtvalor').val("");
+                    $('#txtdescripcion').val("");
+                }
+            });
+        });
+        function Accesorio() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "http://localhost:8000/api/accesorio/", success: function (result) {
+                   
+                    var totalCount = result.length;
+                    var structureDiv = "";
+                    for (let i = 0; i < totalCount; i++) {
+                        structureDiv += "<tr>" +
+                            "     <td>" + result[i].id + "</td>" +
+                            "      <td>" + result[i].marca + "</td>" +
+                            "             <td>" + result[i].tipo_accesorio + "</td>" +
+                            "              <td>" + result[i].nombre_accesorio + "</td>" +
+                            "              <td>" + result[i].valor + "</td>" +
+                            "              <td>" + result[i].descripcion + "</td>"+
+                            "              <td><button class='btn btn-link' onclick='return confirm(\"Estas seguro que quieres ELIMINAR?\",DeleteRow(" + result[i].id + "))'>Delete</button></td>" +
+                            "           </tr>";
+                    }
+
+                    $("#divBody").html(structureDiv);
+              
+                }
+            });
+
+        }
+
+        function DeleteRow(id) {
+            
+            $.ajax({
+                type: 'DELETE',
+                dataType: 'json',
+
+                url: "http://localhost:8000/api/accesorio/"+id+"/",
+                error: function (xhr, status, error) {
+
+                    var err_msg = ''
+                    for (var prop in xhr.responseJSON) {
+                        err_msg += prop + ': ' + xhr.responseJSON[prop] + '\n';
+                    }
+
+                    alert(err_msg);
+                },
+                success: function (result) {
+              
+                    Bajo();
+                }
+            });
+        }
+</script>
+
+
+
+
+
+
+{% endblock %}

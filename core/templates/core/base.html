@@ -33,20 +33,50 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/">Inicio</a>
                   </li> 
-                  
+                  {% if perms.core.view_guitarra %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="listar">Listado Producto</a>
+                  </li>
+                  {% endif %}
+                  {% if perms.core.view_guitarra %}
                   <li class="nav-item">
                     <a class="nav-link" href="contacto">Contacto</a>
                   </li>
+                  {% endif %}
+                  {% if perms.core.add_guitarra %}
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                      Agregar Producto
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <li><a class="dropdown-item" href="agregar">Guitarra</a></li>
+                      <li><a class="dropdown-item" href="agregar_bajo">Bajo</a></li>
+                      <li><a class="dropdown-item" href="agregar_piano">Piano</a></li>
+                      <li><a class="dropdown-item" href="agregar_percusion">Percusion</a></li>
+                      <li><a class="dropdown-item" href="agregar_amplificador">Amplificador</a></li>
+                      <li><a class="dropdown-item" href="agregar_accesorio">Accesorio</a></li>
+                    </ul>
+                  </div>
+                  {% endif %}
+                  &nbsp;
 
-
-                    <div class="dropdown" id="loggin">
-              
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                          data-bs-toggle="dropdown" aria-expanded="false">
-                          Inicia Sesión
-                        </a>
-                      </div>             
-                
+                  <div class="dropdown" id="loggin">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Inicia Sesión
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      {% if user.is_authenticated %}
+                      <li><a class="dropdown-item" href="#">🤘{{ user.username }}</a></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}">🎸Cerrar sesión</a></li>
+                      {% else %}
+                      <li><a class="dropdown-item" href="{% url 'login' %}">🎸Iniciar Sesión</a></li>
+                      <li><a class="dropdown-item" href="registro">👨🏻‍🎤Registrarse👨🏻‍🎤</a></li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                  &nbsp;
+                  &nbsp;
                 </ul>
             </div>
         </div>       

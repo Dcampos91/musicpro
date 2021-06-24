@@ -11,6 +11,7 @@ class Marca(models.Model):
 
 
 class Guitarra(models.Model):
+    id = models.IntegerField(primary_key=True)
     marca = models.CharField(max_length=50)
     tipo_cuerpo = models.CharField(max_length=50)
     tipo_guitarra = models.CharField(max_length=50)
@@ -22,6 +23,7 @@ class Guitarra(models.Model):
         return self.marca
 
 class Bajo(models.Model):
+    id = models.IntegerField(primary_key=True)
     marca = models.CharField(max_length=50)
     tipo_cuerpo = models.CharField(max_length=50)
     tipo_bajo = models.CharField(max_length=50)
@@ -34,6 +36,7 @@ class Bajo(models.Model):
         return self.marca
 
 class Piano(models.Model):
+    id = models.IntegerField(primary_key=True)
     marca = models.CharField(max_length=50)
     tipo_piano = models.CharField(max_length=50)
     valor = models.IntegerField()
@@ -44,6 +47,7 @@ class Piano(models.Model):
         return self.marca
 
 class Percusion(models.Model):
+    id = models.IntegerField(primary_key=True)
     marca = models.CharField(max_length=50)
     tipo_bateria = models.CharField(max_length=50)
     valor = models.IntegerField()
@@ -54,6 +58,7 @@ class Percusion(models.Model):
         return self.marca
 
 class Amplificador(models.Model):
+    id = models.IntegerField(primary_key=True)
     marca = models.CharField(max_length=50)
     tipo_amplificador = models.CharField(max_length=50)
     valor = models.IntegerField()
@@ -64,6 +69,7 @@ class Amplificador(models.Model):
         return self.marca
 
 class Accesorio(models.Model):
+    id = models.IntegerField(primary_key=True)
     marca = models.CharField(max_length=50)
     tipo_accesorio = models.CharField(max_length=50)
     nombre_accesorio = models.CharField(max_length=50)
@@ -82,6 +88,7 @@ opciones_consultas = [
     [3, "Felicitaciones"]
 ]
 class Contacto(models.Model):
+    id = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=50)
     correo = models.EmailField()
     tipo_consulta = models.IntegerField(choices=opciones_consultas)

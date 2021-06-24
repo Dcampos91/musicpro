@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_FACEBOOK_KEY = "122756746602598"
+SOCIAL_AUTH_FACEBOOK_SECRET = "54c676882f15e5bd40745608e95a3bd9"
+
 
 # Application definition
 
@@ -41,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'crispy_forms',
     'rest_framework',
+    'social_django',
 ]
 CRISPY_TEMPLATE_PACK ='bootstrap4'
 
@@ -82,8 +89,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/xe',
-        'USER': 'MUSIC',
-        'PASSWORD': 'MUSIC',
+        'USER': 'PRO',
+        'PASSWORD': 'PRO',
         'TEST': {
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',
@@ -140,3 +147,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]

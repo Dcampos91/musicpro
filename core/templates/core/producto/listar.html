@@ -1,0 +1,167 @@
+{% extends 'core/base.html' %}
+{% block contenido %}
+{% load humanize %}
+
+<br><br>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Guitarras</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm" id="guitarras">
+            <thead>
+                <tr>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Tipo Guitarra</th>
+                  <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <script >
+                fetch('http://localhost:8000/api/guitarra/').then(function(response) {
+                return response.json();
+                }).then(function(data) {
+                console.log(data);
+                data.forEach(element =>{
+                    let tabla = document.getElementById('guitarras');
+                    tabla.innerHTML += `<tr><td>${element.marca}</td><td>${element.tipo_cuerpo}</td><td>${element.tipo_guitarra}</td><td>${element.valor}</td></tr>`
+                })
+                });
+            </script>              
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Bajo</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm" id="bajos"> 
+            <thead>
+                <tr>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Tipo Bajo</th>
+                  <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <script>
+                fetch('http://localhost:8000/api/bajo/').then(function(response) {
+                return response.json();
+                }).then(function(data) {
+                console.log(data);
+                data.forEach(element =>{
+                    let tabla = document.getElementById('bajos');
+                    tabla.innerHTML += `<tr><td>${element.marca}</td><td>${element.tipo_cuerpo}</td><td>${element.tipo_bajo}</td><td>${element.valor}</td></tr>`
+                })
+                });
+            </script>   
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Pianos</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm" id="pianos"> 
+            <thead>
+                <tr>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <script>
+                fetch('http://localhost:8000/api/piano/').then(function(response) {
+                return response.json();
+                }).then(function(data) {
+                console.log(data);
+                data.forEach(element =>{
+                    let tabla = document.getElementById('pianos');
+                    tabla.innerHTML += `<tr><td>${element.marca}</td><td>${element.tipo_piano}</td><td>${element.valor}</td></tr>`
+                })
+                });
+            </script>   
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Percusion</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm" id="percusion"> 
+            <thead>
+                <tr>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Tipo Bateria</th>
+                  <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <script>
+                fetch('http://localhost:8000/api/percusion/').then(function(response) {
+                return response.json();
+                }).then(function(data) {
+                console.log(data);
+                data.forEach(element =>{
+                    let tabla = document.getElementById('percusion');
+                    tabla.innerHTML += `<tr><td>${element.marca}</td><td>${element.tipo_bateria}</td><td>${element.valor}</td></tr>`
+                })
+                });
+            </script>   
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Amplificador</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm" id="amplificador"> 
+            <thead>
+                <tr>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Tipo Amplificador</th>
+                  <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <script>
+                fetch('http://localhost:8000/api/amplificador/').then(function(response) {
+                return response.json();
+                }).then(function(data) {
+                console.log(data);
+                data.forEach(element =>{
+                    let tabla = document.getElementById('amplificador');
+                    tabla.innerHTML += `<tr><td>${element.marca}</td><td>${element.tipo_amplificador}</td><td>${element.valor}</td></tr>`
+                })
+                });
+            </script>   
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Accesorios</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm" id="accesorios"> 
+            <thead>
+                <tr>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Tipo Accesorio</th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <script>
+                fetch('http://localhost:8000/api/accesorio/').then(function(response) {
+                return response.json();
+                }).then(function(data) {
+                console.log(data);
+                data.forEach(element =>{
+                    let tabla = document.getElementById('accesorios');
+                    tabla.innerHTML += `<tr><td>${element.marca}</td><td>${element.tipo_accesorio}</td><td>${element.nombre_accesorio}</td><td>${element.valor}</td></tr>`
+                })
+                });
+            </script>   
+        </table>
+    </div>
+</div>
+<br><br>
+
+{% endblock %}
